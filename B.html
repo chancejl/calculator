@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .wrap {
+        width: 500px;
+        height: 50px;
+        margin: 10px auto;
+        background: grey;
+        text-align: center;
+    }
+
+    input {
+        width: 80px;
+        height: 25px;
+        margin: 10px 2px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .pAdd {
+        width: 490px;
+        background: grey;
+        text-align: center;
+        line-height: 50px;
+        height: 50px;
+        color: white;
+        margin: 5px auto;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <input type="text" value="添加">
+        <input type="text" value="删除">
+        <input type="text" value="大于0">
+        <input type="text" value="小于0">
+        <input type="text" value="刷新">
+    </div>
+    <script>
+    var body = document.querySelector("body");
+    console.log(body);
+    var inputs = document.getElementsByTagName("input");
+    var wrap = document.getElementsByClassName("wrap")[0];
+    var isOpen = false;
+    var p = document.createElement('div');
+    body.appendChild(p);
+    var pDivs = p.children;
+
+
+    inputs[0].onclick = function() {
+        add(arr);
+    }
+    inputs[1].onclick = function() {
+        if (pDivs.length > 0) {
+            p.lastElementChild.remove();
+        }
+    }
+    var arr1 = [];
+    var arr2 = [];
+    inputs[2].onclick = function() {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) {
+                arr1.push(arr[i]);
+            } else {
+                arr2.push(arr[i]);
+            }
+        }
+        console.log(arr2);
+        console.log(p);
+        p.remove();
+
+        p = document.createElement('div');
+        body.appendChild(p);
+        for (var i = 0; i < arr1.length; i++) {
+            console.log(arr1[i]);
+            var p2 = document.createElement('div');
+            p2.className = 'pAdd';
+            p2.innerText = arr1[i];
+            console.log(p2);
+            p.appendChild(p2);
+        }
+
+    }
+    inputs[3].onclick = function(){
+    	p.remove();
+
+        p = document.createElement('div');
+        body.appendChild(p);
+        for (var i = 0; i < arr2.length; i++) {
+            console.log(arr2[i]);
+            var p2 = document.createElement('div');
+            p2.className = 'pAdd';
+            p2.innerText = arr2[i];
+            console.log(p2);
+            p.appendChild(p2);
+        }
+    }
+    inputs[4].onclick = function(){
+    	p.remove();
+
+        p = document.createElement('div');
+        body.appendChild(p);
+        for (var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+            var p2 = document.createElement('div');
+            p2.className = 'pAdd';
+            p2.innerText = arr[i];
+            console.log(p2);
+            p.appendChild(p2);
+        }
+    }
+
+
+    var arr = [];
+
+    function randomNum() {
+        if (isOpen) {
+            var num = 100 - parseInt(Math.random() * 200);
+            arr.push(num);
+            isOpen = false;
+        }
+
+    }
+    console.log(arr);
+
+    function add(ele) {
+        isOpen = true;
+        var p1 = document.createElement('div');
+        p1.className = 'pAdd';
+        randomNum();
+        p1.innerText = ele[ele.length - 1];
+        p.appendChild(p1);
+    }
+    </script>
+</body>
+
+</html>
