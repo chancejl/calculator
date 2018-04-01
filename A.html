@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .wrap {
+        width: 500px;
+        border: 4px solid black;
+        margin: 10px auto;
+        padding: 20px;
+    }
+
+    .show {
+        width: 40px;
+        color: white;
+        background: orange;
+        opacity:0.5;
+        box-shadow: 0 0 1px grey;
+        text-align: center;
+        padding: 2px;
+        margin: 2px 0 20px 0;
+    }
+
+    #text {
+        margin-top: 20px;
+    }
+
+    .pDiv {
+        width: 100%;
+        height: 50px;
+        background: lightgrey;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box">
+            <textarea name="" id="text" cols="80" rows="15"></textarea>
+            <div class="show">发布</div>
+        </div>
+    </div>
+    <script>
+    var tex = document.getElementById("text");
+    var box = document.getElementsByClassName("box")[0];
+    var show = document.getElementsByClassName("show")[0];
+    var word = tex.value;
+
+    tex.oninput = function(){
+    	if(!(tex == '')){
+    		show.style.opacity = '1';
+    		isOpen = true;
+    	}
+    }
+    show.onclick = function() {
+    	if(isOpen){
+    		showDiv();
+    		tex.value = '';
+    	}  
+    }
+
+    function showDiv(){
+    	ele = tex.value;
+    	var p1 = document.createElement('div');
+        p1.innerHTML = ele;
+        p1.className = 'pDiv';      
+        show.style.opacity = '0.5';
+        var sp = document.createElement('span');
+        sp.innerHTML = 'X';
+        sp.style.float = 'right';
+        p1.appendChild(sp);
+        isOpen = false;
+        box.appendChild(p1);
+        sp.onclick = function(){
+        	p1.remove();
+        }
+    }
+    </script>
+</body>
+
+</html>
